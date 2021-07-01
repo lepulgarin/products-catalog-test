@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve && node src/assets/data/index.js --file=src/assets/data/json-samples/db.json --port=300 --authentication=si",
     "build": "ng build && node src/assets/data/index.js --file=src/assets/data/json-samples/db.json --port=300 --authentication=si",
     "json:server": "json-server --watch src/assets/data/db.json",
     "watch": "ng build --watch --configuration development",
