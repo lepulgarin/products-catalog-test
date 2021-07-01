@@ -1,0 +1,69 @@
+{
+    "catalog": [
+        {
+            "id": 34645,
+            "name": "Apartamento circunvalar",
+            "city": "pereira",
+            "type": "apt",
+            "rooms": 3,
+            "washrooms": 2,
+            "price": 700000,
+            "contact_number": "322321232",
+            "url_image": "assets/images/houses/house1.jpg"
+        },
+        {
+            "id": 34545,
+            "name": "Casa campestre",
+            "city": "manizales",
+            "type": "camp_house",
+            "rooms": 4,
+            "washrooms": 3,
+            "price": 5000000,
+            "contact_number": "12312312312312",
+            "url_image": "assets/images/houses/house2.jpg"
+        },
+        {
+            "id": 34345,
+            "name": "Bodega",
+            "city": "armenia",
+            "type": "cellar",
+            "rooms": 1,
+            "washrooms": 4,
+            "price": 4600000,
+            "contact_number": "123231231",
+            "url_image": "assets/images/houses/house1.jpg"
+        },
+        {
+            "id": 67545,
+            "name": "Casa esquinera",
+            "city": "pereira",
+            "type": "house",
+            "rooms": 3,
+            "washrooms": 2,
+            "price": 500000,
+            "contact_number": "322321232",
+            "url_image": "assets/images/houses/house2.jpg"
+        },
+        {
+            "id": 38745,
+            "name": "apartamento villa verde",
+            "city": "pereira",
+            "type": "apt",
+            "rooms": 3,
+            "washrooms": 1,
+            "price": 900000,
+            "contact_number": "322321232",
+            "url_image": "assets/images/houses/house1.jpg"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}

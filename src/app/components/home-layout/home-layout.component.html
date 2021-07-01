@@ -1,0 +1,142 @@
+<header class="header">
+  <a href="/">
+    <img class="headerImg" src="assets/icons/catalog.svg" alt="logo header" />
+  </a>
+  <div class="navigationTabs">
+    <ul class="navigationTabsList">
+      <li><a routerLink="/">Inicio</a></li>
+      <li><a routerLink="catalog">Catálogo</a></li>
+    </ul>
+  </div>
+  <div *ngIf="loggedUser === null" class="dropdown">
+    <a
+      class="dropdown-toggle navigationDropdown"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <span class="caret"></span>
+      Iniciar sesión
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li>
+        <span class="title">Si tienes una cuenta, inicia sesión.</span>
+        <div class="">
+          <form [formGroup]="signInForm" class="body form-group">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                formControlName="email"
+              />
+              <label for="floatingInput">Correo electrónico</label>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  signInFormControl.email.touched &&
+                  signInFormControl.email.errors?.required
+                "
+                >Correo electrónico requerido
+              </span>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  signInFormControl.email.touched &&
+                  signInFormControl.email.errors?.email
+                "
+              >
+                Correo electrónico inválido
+              </span>
+            </div>
+            <div class="form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <label for="floatingPassword">Contraseña</label>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  signInFormControl.password.touched &&
+                  signInFormControl.password.errors?.required
+                "
+                >Contraseña requerida
+              </span>
+            </div>
+          </form>
+        </div>
+        <a class="btn btn-yellow" (click)="logIn()" type="button"> Entrar </a>
+        <div class="my-3">
+          ¿No estás registrado? <a href=""> Crea una cuenta</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="loggedUser !== null" class="dropdown">
+    <a
+      class="dropdown-toggle navigationDropdown"
+      type="button"
+      id="dropdownMenuButton2"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <span class="caret"></span>
+      {{ loggedUser.name }}
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+      <li>
+        <span class="title">Has iniciado como: {{ loggedUser.email }}.</span>
+        <a class="btn btn-yellow" (click)="logOut()" type="button"> Salir </a>
+      </li>
+    </ul>
+  </div>
+  <div class="sideNavBtn">
+    <img (click)="openNav()" src="assets/icons/menu.svg" alt="side nav icon" />
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
+      >&times;</a
+    >
+    <a
+      *ngIf="loggedUser === null"
+      (click)="closeNav()"
+      data-bs-toggle="modal"
+      data-bs-target="#loginModal"
+    >
+      Ingresa</a
+    >
+    <a *ngIf="loggedUser !== null"> {{ loggedUser.email }} </a>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="catalog">Catálogo</a>
+    <a *ngIf="loggedUser !== null" (click)="logOut()" type="button"> Salir </a>
+  </div>
+</header>
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+>
+  <app-login-modal> </app-login-modal>
+</div>
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <img
+    class="footerImg"
+    src="assets/icons/catalog.svg"
+    alt="logo footer"
+    srcset=""
+  />
+  <div class="footerActions">
+    <span>Products Catalog</span>
+  </div>
+</footer>

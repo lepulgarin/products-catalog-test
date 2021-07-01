@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="catalogTitle">
+    <h1>Catálogo</h1>
+  </div>
+  <div class="catalogContent">
+    <div class="catalogFilter">
+      <div>
+        <label>Tipo de propiedad</label>
+        <select
+          [(ngModel)]="filter.type"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled selected [value]="null">Tipo de propiedad</option>
+          <option value="camp_house">Casa campestre</option>
+          <option value="apt">Apartamento</option>
+          <option value="house">Casa</option>
+          <option value="cellar">Bodega</option>
+        </select>
+      </div>
+      <div>
+        <label>Ciudad</label>
+        <select
+          [(ngModel)]="filter.city"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled selected [value]="null">Ciudad</option>
+          <option value="pereira">Pereira</option>
+          <option value="dosquebradas">Dosquebradas</option>
+          <option value="armenia">Armenia</option>
+          <option value="manizales">Manizales</option>
+        </select>
+      </div>
+      <div>
+        <label>Cantidad de habitaciones</label>
+        <select
+          [(ngModel)]="filter.rooms"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled selected [value]="null">Habitaciones</option>
+          <option [value]="1">1</option>
+          <option [value]="2">2</option>
+          <option [value]="3">3</option>
+          <option [value]="4">4</option>
+        </select>
+      </div>
+      <div>
+        <label>Cantidad de baños</label>
+        <select
+          [(ngModel)]="filter.washrooms"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled selected [value]="null">Baños</option>
+          <option [value]="1">1</option>
+          <option [value]="2">2</option>
+          <option [value]="3">3</option>
+          <option [value]="4">4</option>
+        </select>
+      </div>
+      <div>
+        <button (click)="filterFunc()" class="btn btn-yellow w-100 mt-4">
+          Filtrar
+        </button>
+      </div>
+    </div>
+    <div class="catalogGrid">
+      <div *ngFor="let item of catalog" class="card">
+        <img [src]="item.url_image" alt="card-image" />
+        <div class="card-body">
+          <span class="title"> {{ item.name }} </span>
+          <div class="row w-100">
+            <div class="col-8 p-0">Habitaciones:</div>
+            <div class="col-4">{{ item.rooms }}</div>
+            <div class="col-8 p-0">Baños:</div>
+            <div class="col-4">{{ item.washrooms }}</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="">{{ item.city.toUpperCase() }}</div>
+          <div>${{ item.price }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

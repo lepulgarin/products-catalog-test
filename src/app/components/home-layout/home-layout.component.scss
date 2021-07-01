@@ -1,0 +1,235 @@
+// Header styles
+.header,
+.footer {
+  background-color: var(--color-grey);
+  width: 100%;
+  min-width: var(--scree-min-width);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  padding: 10px 50px;
+  position: sticky;
+  z-index: 200;
+  gap: 10px;
+  margin: 0 auto;
+
+  * {
+    color: var(--color-text-navigation);
+    text-decoration: none;
+  }
+
+  .headerImg {
+    max-width: 50px;
+  }
+
+  .navigationTabs {
+    width: 100%;
+  }
+
+  .navigationTabsList {
+    display: flex;
+    list-style: none;
+    margin: auto;
+    padding: 0;
+
+    li a {
+      margin: 8px;
+      transition: 0.2s;
+
+      &:hover {
+        color: var(--color-text-navigation-hover);
+      }
+    }
+  }
+
+  .navigationDropdown {
+    transition: 0.2s;
+
+    &:hover {
+      color: var(--color-text-navigation-hover);
+    }
+  }
+
+  .dropdown-toggle::after {
+    color: var(--color-text-navigation);
+  }
+
+  .dropdown-toggle[aria-expanded="true"] .caret {
+    content: "";
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 70px;
+    position: fixed;
+    display: block;
+    z-index: 200;
+    background-color: #00000096;
+  }
+
+  .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+    transition: all ease 0.5s;
+  }
+
+  .dropdown-toggle::after {
+    transition: all ease 0.5s;
+  }
+
+  .dropdown-menu {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.514);
+    padding: 20px;
+    border-radius: 5px;
+    min-width: 520px;
+    background-color: var(--color-grey);
+
+    li {
+      row-gap: 20px;
+      text-align: center;
+    }
+
+    li .title {
+      font-size: var(--font-size-medium);
+      font-weight: bold;
+    }
+
+    li .body {
+      * {
+        color: black;
+      }
+      font-weight: 300;
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+      .form-floating {
+        width: 100%;
+      }
+      label {
+        font-weight: 600;
+      }
+    }
+
+    li .btn {
+      width: 100%;
+    }
+
+    * {
+      color: white;
+    }
+  }
+
+  .navigation-btn {
+    white-space: nowrap;
+    margin-left: 15px;
+    display: inline-block;
+    border-color: var(--color-yellow);
+    color: var(--color-yellow) !important;
+
+    &:hover {
+      background-color: var(--color-yellow-hover);
+    }
+  }
+  .sideNavBtn {
+    display: none;
+  }
+  /* The side navigation menu */
+  .sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: var(--color-grey); /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: var(--font-size-medium);
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}
+
+// Footer styles
+.footer {
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 30px;
+
+  * {
+    color: var(--color-text-navigation);
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .footerImg {
+    max-width: 50px;
+  }
+
+  .footerActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+
+    a {
+      color: var(--color-font-href);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    justify-content: space-between;
+    padding: 10px 20px;
+    .navigationTabs,
+    .navigation-btn,
+    .navigationDropdown {
+      display: none;
+    }
+    .sideNavBtn {
+      display: block;
+      img {
+        max-width: 20px;
+      }
+    }
+  }
+
+  .footer {
+    .footerActions {
+      padding: 0 10px;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
