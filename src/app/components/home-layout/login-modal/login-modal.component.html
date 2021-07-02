@@ -11,15 +11,33 @@
     <div class="modal-body">
       <div class="loginForm">
         <span class="title">Si tienes una cuenta, inicia sesión.</span>
-        <div class="body">
+        <form [formGroup]="signInForm" class="body form-group">
           <div class="form-floating mb-3">
             <input
               type="email"
               class="form-control"
               id="floatingInput"
               placeholder="name@example.com"
+              formControlName="email"
             />
             <label for="floatingInput">Correo electrónico</label>
+            <span
+              class="text-danger validation"
+              *ngIf="
+                signInFormControl.email.touched &&
+                signInFormControl.email.errors?.required
+              "
+              >Correo electrónico requerido
+            </span>
+            <span
+              class="text-danger validation"
+              *ngIf="
+                signInFormControl.email.touched &&
+                signInFormControl.email.errors?.email
+              "
+            >
+              Correo electrónico inválido
+            </span>
           </div>
           <div class="form-floating">
             <input
@@ -27,15 +45,34 @@
               class="form-control"
               id="floatingPassword"
               placeholder="Password"
+              formControlName="password"
             />
             <label for="floatingPassword">Contraseña</label>
+            <span
+              class="text-danger validation"
+              *ngIf="
+                signInFormControl.password.touched &&
+                signInFormControl.password.errors?.required
+              "
+              >Contraseña requerida
+            </span>
           </div>
-        </div>
-        <a class="btn btn-yellow" routerLink="/user/plans" role="button">
+        </form>
+        <button
+          [disabled]="!signInForm.valid"
+          class="btn btn-yellow"
+          role="button"
+          (click)="logIn()"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
           Entrar
-        </a>
+        </button>
         <div class="my-3">
-          ¿No estás registrado? <a href="">Crea una cuenta</a>
+          ¿No estás registrado?
+          <a routerLink="/register" data-bs-dismiss="modal" aria-label="Close"
+            >Crea una cuenta</a
+          >
         </div>
       </div>
     </div>

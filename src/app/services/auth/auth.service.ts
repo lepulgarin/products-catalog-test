@@ -24,7 +24,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const isLogged = localStorage.getItem('isLogged');
-    if (isLogged) return true;
+    if (isLogged === 'true') return true;
     return false;
   }
   getUser(): any {

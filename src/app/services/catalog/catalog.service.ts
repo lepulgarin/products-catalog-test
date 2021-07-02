@@ -16,7 +16,6 @@ export class CatalogService {
       })
       .pipe(
         map((res: any) => {
-          console.log('res :>> ', res);
           return res;
         })
       );

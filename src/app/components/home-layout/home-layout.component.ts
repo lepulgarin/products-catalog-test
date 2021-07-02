@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Auth } from 'src/app/models/auth.model';
+import { SharedAuthService } from 'src/app/services/sharedAuth/shared-auth.service';
 
 @Component({
   selector: 'app-home-layout',
@@ -11,12 +12,18 @@ import { Auth } from 'src/app/models/auth.model';
 export class HomeLayoutComponent implements OnInit {
   signInForm!: FormGroup;
   loggedUser!: any;
+  authModel: Auth = new Auth();
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
-  ) {}
-
-  authModel: Auth = new Auth();
+    private formBuilder: FormBuilder,
+    private _sharedAuth: SharedAuthService
+  ) {
+    _sharedAuth.loginEmitted$.subscribe((data) => {
+      this.signInForm.value.email = data.email;
+      this.signInForm.value.password = data.password;
+      this.makeLogIn();
+    });
+  }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
@@ -35,24 +42,25 @@ export class HomeLayoutComponent implements OnInit {
     return this.signInForm.controls;
   }
   logIn() {
-    console.log('holassss');
-
+    if (this.signInForm.valid) {
+      this.makeLogIn();
+    }
+  }
+  makeLogIn() {
     this.authModel.email = this.signInForm.value.email;
     this.authModel.password = this.signInForm.value.password;
-    if (this.signInForm.valid) {
-      this.authService.logIn(this.authModel).subscribe(
-        (res) => {
-          this.authService.setToken('token', res.token);
-          this.authService.setUser('user', res.user);
-          this.authService.setToken('isLogged', true);
-          this.checkLoggedUser();
-          this.signInForm.reset();
-        },
-        (err) => {
-          this.signInForm.reset();
-        }
-      );
-    }
+    this.authService.logIn(this.authModel).subscribe(
+      (res) => {
+        this.authService.setToken('token', res.token);
+        this.authService.setUser('user', res.user);
+        this.authService.setToken('isLogged', true);
+        this.checkLoggedUser();
+        this.signInForm.reset();
+      },
+      (err) => {
+        this.signInForm.reset();
+      }
+    );
   }
   logOut() {
     this.authService.setToken('token', null);

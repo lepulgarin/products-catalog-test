@@ -1,1 +1,127 @@
-<p>register works!</p>
+<main class="container main-login">
+  <div class="card card-login">
+    <div class="">
+      <div class="card-body">
+        <div class="">
+          <h1 class="mb-4">Crea una cuenta</h1>
+        </div>
+        <div class="text-center">
+          <form [formGroup]="registerForm" class="form-group">
+            <div class="form-floating mb-3 input-login input-form">
+              <input
+                type="text"
+                id="nameRegister"
+                class="form-control"
+                name="name"
+                placeholder="Nombre"
+                formControlName="name"
+              />
+              <label for="nameRegister">Nombre</label>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.name.touched &&
+                  registerFormControl.name.errors?.required
+                "
+              >
+                Nombre requerido
+              </span>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.name.touched &&
+                  registerFormControl.name.errors?.minlength
+                "
+              >
+                Mínimo 8 caracteres
+              </span>
+            </div>
+            <div class="form-floating mb-3 input-login input-form">
+              <input
+                type="email"
+                id="emailLogin"
+                class="form-control"
+                name="email"
+                placeholder="Correo electrónico"
+                formControlName="email"
+              />
+              <label for="emailLogin">Correo electrónico</label>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.email.touched &&
+                  registerFormControl.email.errors?.required
+                "
+              >
+                Correo electrónico requerido
+              </span>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.email.touched &&
+                  registerFormControl.email.errors?.email
+                "
+              >
+                Correo electrónico inválido
+              </span>
+            </div>
+            <div class="form-floating mb-3 input-login input-form">
+              <input
+                type="password"
+                id="passwordLogin"
+                class="fadeIn text-start third form-control"
+                name="login"
+                placeholder="Contraseña"
+                formControlName="password"
+              />
+              <label for="passwordLogin">Contraseña</label>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.password.touched &&
+                  registerFormControl.password.errors?.required
+                "
+              >
+                Contraseña requerida
+              </span>
+              <span
+                class="text-danger validation"
+                *ngIf="
+                  registerFormControl.password.touched &&
+                  registerFormControl.password.errors?.pattern
+                "
+              >
+                Contraseña inválida - debe contener al menos una mayúscula y un
+                número
+              </span>
+            </div>
+            <div class="form-check radio-terms" (click)="toggleTermsChecked()">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="flexCheckDefault"
+                id="flexCheckDefault"
+                [checked]="termsChecked"
+              />
+              <label
+                class="form-check-label label-terms"
+                for="flexCheckDefault"
+                (click)="toggleTermsChecked()"
+              >
+                He leído y estoy de acuerdo con los Términos y condiciones
+              </label>
+            </div>
+            <button
+              (click)="registerUser()"
+              class="btn btn-yellow my-3 w-100"
+              [disabled]="termsChecked ? !registerForm.valid : true"
+            >
+              Crear cuenta
+            </button>
+            <!-- Example SweetAlert2 -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

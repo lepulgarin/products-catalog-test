@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://json-serve-mock.herokuapp.com',
+  API_URL: 'http://localhost:3000',
 };
 
 /*

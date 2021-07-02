@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './catalog/catalog.component';
 import { HomeLayoutComponent } from './home-layout.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterGuard } from 'src/app/guards/register.guard';
 
 const routes: Routes = [
   {
@@ -11,18 +13,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component:HomeComponent
+        component: HomeComponent,
       },
       {
         path: 'catalog',
-        component:CatalogComponent
-      }
-    ]
-  }
+        component: CatalogComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [RegisterGuard],
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeLayoutRoutingModule { }
+export class HomeLayoutRoutingModule {}

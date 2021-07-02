@@ -33,7 +33,6 @@ export class CatalogComponent implements OnInit {
       ? (params.washrooms = this.filter.washrooms)
       : '';
     this.filter.rooms != null ? (params.rooms = this.filter.rooms) : '';
-    console.log('params :>> ', params);
     this.catalogService.getCatalog(params).subscribe((res) => {
       this.catalog = res;
     });
